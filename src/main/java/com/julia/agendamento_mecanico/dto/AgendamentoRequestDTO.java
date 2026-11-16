@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public record AgendamentoRequestDTO(
 
@@ -21,9 +22,9 @@ public record AgendamentoRequestDTO(
         LocalDate dataEntrada,
 
         @NotNull(message = "*Informe o horário do agendamento")
-        LocalDate horaEntrada,
+        LocalTime horaEntrada,
 
-        @NotNull(message = "*Informe o status do agendamento")
+        @NotBlank(message = "*Informe o status do agendamento")
         StatusAgendamento status,
 
         @NotNull(message = "*Informe se o agendamento está ativo")
