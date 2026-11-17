@@ -24,7 +24,7 @@ public record AgendamentoRequestDTO(
         @NotNull(message = "*Informe o horário do agendamento")
         LocalTime horaEntrada,
 
-        @NotBlank(message = "*Informe o status do agendamento")
+        @NotNull(message = "*Informe o status do agendamento")
         StatusAgendamento status,
 
         @NotNull(message = "*Informe se o agendamento está ativo")
