@@ -23,7 +23,7 @@ public class Agendamento {
     @Column(nullable = false)
     private String nomeCliente;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String placaVeiculo;
 
     @Column(nullable = false)

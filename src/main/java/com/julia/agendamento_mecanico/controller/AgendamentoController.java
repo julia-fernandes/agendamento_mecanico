@@ -2,13 +2,14 @@ package com.julia.agendamento_mecanico.controller;
 
 import com.julia.agendamento_mecanico.dto.AgendamentoRequestDTO;
 import com.julia.agendamento_mecanico.dto.AgendamentoResponseDTO;
-import com.julia.agendamento_mecanico.model.Agendamento;
+import com.julia.agendamento_mecanico.model.StatusAgendamento;
 import com.julia.agendamento_mecanico.service.AgendamentoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,9 +27,34 @@ public class AgendamentoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/placa")
+    public AgendamentoResponseDTO buscarPorPlaca(@RequestParam String placaVeiculo){
+        return service.buscarPorPlaca(placaVeiculo);
+    }
+
+    @GetMapping("/cliente")
+    public List<AgendamentoResponseDTO> buscarPorCliente(@RequestParam String nomeCliente){
+        return service.buscarPorCliente(nomeCliente);
+    }
+
     @GetMapping
     public List<AgendamentoResponseDTO> listarAgendamentos(){
         return service.listarAgendamentos();
+    }
+
+    @GetMapping("/data")
+    public List<AgendamentoResponseDTO> listarPorData(@RequestParam LocalDate dataEntrada){
+        return service.listarPorData(dataEntrada);
+    }
+
+    @GetMapping("/status")
+    public List<AgendamentoResponseDTO> listarPorStatus(@RequestParam StatusAgendamento status){
+        return service.listarPorStatus(status);
+    }
+
+    @GetMapping("/atividade")
+    public List<AgendamentoResponseDTO> listarPorAtividade(@RequestParam Boolean atividade){
+        return service.listarPorAtividade(atividade);
     }
 
     @PostMapping

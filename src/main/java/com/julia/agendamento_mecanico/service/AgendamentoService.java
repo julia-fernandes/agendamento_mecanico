@@ -9,6 +9,7 @@ import com.julia.agendamento_mecanico.model.StatusAgendamento;
 import com.julia.agendamento_mecanico.repository.AgendamentoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,6 +19,10 @@ public class AgendamentoService {
 
     public AgendamentoService(AgendamentoRepository repository){
         this.repository = repository;
+    }
+
+    private List<AgendamentoResponseDTO> listResponse(List<Agendamento> agendamentos){
+        return agendamentos.stream().map(this::toResponse).toList();
     }
 
     private AgendamentoResponseDTO toResponse(Agendamento agendamento){
@@ -60,8 +65,39 @@ public class AgendamentoService {
         return toResponse(agendamento);
     }
 
+    public AgendamentoResponseDTO buscarPorPlaca(String placaVeiculo){
+        Agendamento agendamento = repository.findByPlacaVeiculoIgnoreCase(placaVeiculo)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Agendamento não encontrado."));
+
+        return toResponse(agendamento);
+    }
+
+    public List<AgendamentoResponseDTO> buscarPorCliente(String nomeCliente){
+        List<Agendamento> agendamentos = repository.findByNomeClienteContainingIgnoreCase(nomeCliente);
+
+        return listResponse(agendamentos);
+    }
+
     public List<AgendamentoResponseDTO> listarAgendamentos(){
         return repository.findAll().stream().map(this::toResponse).toList();
+    }
+
+    public List<AgendamentoResponseDTO> listarPorData(LocalDate dataEntrada){
+        List<Agendamento> agendamentos = repository.findByDataEntrada(dataEntrada);
+
+        return listResponse(agendamentos);
+    }
+
+    public List<AgendamentoResponseDTO> listarPorStatus(StatusAgendamento status){
+        List<Agendamento> agendamentos = repository.findByStatus(status);
+
+        return listResponse(agendamentos);
+    }
+
+    public List<AgendamentoResponseDTO> listarPorAtividade(Boolean atividade){
+        List<Agendamento> agendamentos = repository.findByAtividade(atividade);
+
+        return listResponse(agendamentos);
     }
 
     public AgendamentoResponseDTO cadastrar(AgendamentoRequestDTO dto){
