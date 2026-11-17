@@ -129,7 +129,7 @@ de forma consistente na API.
 -   PostgreSQL como banco de dados obrigatório.
 -   Validação dos dados recebidos.
 -   Tratamento adequado de exceções e respostas HTTP.
--   Testes dos endpoints utilizando Postman ou Insomnia.
+-   [Testes dos endpoints utilizando Postman ou Insomnia.](docs/imagens/)
 -   Organização do código em camadas, com Controller, Repository e
     Model/Entity. A camada Service é opcional.
 
@@ -144,11 +144,11 @@ dados, separação de responsabilidades e tratamento de erros.
 
 ## 10. Checklist para entrega
 
--   [ ] Projeto Spring Boot executando corretamente.
--   [ ] Entidade de agendamento com todos os campos definidos.
--   [ ] Conexão com PostgreSQL funcionando.
--   [ ] Cadastro e consulta de agendamentos testados.
--   [ ] Alteração e exclusão testadas.
--   [ ] Validações e regras de negócio implementadas.
--   [ ] Tratamento de erros e códigos HTTP verificados.
--   [ ] Evidências dos testes no Postman ou Insomnia.
+- [x] Projeto Spring Boot executando corretamente.
+- [x] Entidade de agendamento com todos os campos definidos.
+- [x] Conexão com PostgreSQL funcionando.
+- [x] Cadastro e consulta de agendamentos testados.
+- [x] Alteração e exclusão testadas.
+- [x] Validações e regras de negócio implementadas.
+- [x] Tratamento de erros e códigos HTTP verificados.
+- [x] Evidências dos testes no Postman ou Insomnia.
